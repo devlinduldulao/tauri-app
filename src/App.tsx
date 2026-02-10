@@ -11,7 +11,7 @@ function App() {
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    setGreetMsg(await invoke("greet", { name }));
+    setGreetMsg(await invoke<string>("greet", { name }));
   }
 
   return (
@@ -50,7 +50,7 @@ function App() {
         id="greet-input"
         onChange={async (e) =>
           setListOfIles(
-            await invoke("list_files", { path: e.currentTarget.value }) // /sdcard/ for android
+            await invoke<string[]>("list_files", { path: e.currentTarget.value }) // /sdcard/ for android
           )
         }
         placeholder="Enter a path..."
